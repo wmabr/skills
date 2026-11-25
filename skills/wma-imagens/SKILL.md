@@ -54,16 +54,18 @@ Também vale para qualquer imagem com criança, de qualquer produto:
 
 ## 3. Manequins
 
-Quando a imagem usar manequim:
+Quando a imagem usar manequim, siga o estilo das [referências de manequim](referencias/README.md):
 
-- **Design moderno, rosto liso** (sem olhos, nariz ou boca desenhados), acabamento fosco, proporções realistas.
+- **Design moderno, rosto liso** (sem olhos, nariz ou boca), acabamento fosco, proporções realistas. Exceção: o manequim de **recém-nascido** pode ter traços do rosto esculpidos de forma bem suave, como na referência.
+- Emendas discretas nos ombros, cotovelos, punhos, quadril e joelhos são aceitas, como nas referências. Nada de articulações aparentes tipo boneco articulado de desenho.
 - **Uma única cor** por manequim, escolhida pelo cenário:
   - **Branco**: fundos escuros, coloridos ou vitrine com muita cor.
-  - **Cinza**: fundo branco ou claro, uso neutro do dia a dia.
-  - **Preto**: fundos claros quando a peça é clara e precisa de contraste.
+  - **Cinza**: uso neutro do dia a dia, fundos claros ou escuros.
+  - **Preto**: fundos claros, ou quando a peça é clara e precisa de contraste.
   - **Madeira** (cerejeira, carvalho ou marfim): cenários quentes, lojas, vitrines e ambientes com madeira.
-- Nunca manequim antigo, com peruca, maquiagem, rosto realista ou articulações aparentes.
-- Manequim infantil segue as mesmas regras, com proporção de criança.
+- **Faixa etária do manequim = público do produto**: recém-nascido, infantil, adolescente, adulto feminino ou adulto masculino.
+- **Pose:** de pé, frontal e relaxada por padrão. Pose dinâmica (corrida, por exemplo) só para roupa esportiva. Recém-nascido deitado.
+- Nunca manequim antigo, com peruca, maquiagem ou rosto realista.
 - Nunca misturar manequim e pessoa na mesma peça, a menos que o contexto peça.
 
 ## 4. Foco no produto
@@ -81,7 +83,7 @@ Escreva o prompt em inglês (os geradores entendem melhor) e preencha:
 
 ```
 [Enquadramento e formato do contexto], photo of [PRODUTO com cor, modelagem e detalhes reais],
-worn by [pessoa: idade aproximada, sexo, aparência brasileira, tom de pele] / displayed on a modern faceless [cor] mannequin / laid flat without a person,
+worn by [pessoa: idade aproximada, sexo, aparência brasileira, tom de pele] / displayed on a modern faceless matte [cor] [newborn/child/teen/adult female/adult male] mannequin / laid flat without a person,
 [pose/ação natural], in [cenário do contexto], [luz do contexto],
 product in sharp focus and centered, true-to-life colors, natural look, no text, no logos, no watermark.
 ```
