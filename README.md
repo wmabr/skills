@@ -18,6 +18,7 @@ skills/
 | Skill | Para que serve |
 | --- | --- |
 | [wma-design-system](skills/wma-design-system/SKILL.md) | Identidade visual: paleta, Nunito Sans, botões, títulos em chips rotacionados, logo, contraste e voz. |
+| [wma-imagens](skills/wma-imagens/SKILL.md) | Geração de imagens com IA: pessoas, manequins, regra de crianças, foco no produto e padrões por contexto. |
 
 ## Como adicionar uma skill
 
