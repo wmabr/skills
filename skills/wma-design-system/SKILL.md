@@ -28,7 +28,7 @@ A própria página `/marca` define: *"uma marca bem humorada e divertida que foc
 | `wma-black` | `#333333` | Carvão escuro | texto de leitura longa, formulários, documentos legais |
 
 ### Neutros
-`#FFFFFF` fundo padrão · `#F4F4F5` (zinc-100) seção alternada · `#FAFAFA` (zinc-50) FAQ/painéis · `#E4E4E7` (zinc-200) bordas/divisórias · `#71717B` (zinc-500) subtítulos (só ≥16px) · `#09090B` (zinc-950) rodapé escuro e texto neutro de títulos de páginas internas.
+`#FFFFFF` fundo padrão · `#F4F4F5` (zinc-100) seção alternada · `#FAFAFA` (zinc-50) FAQ/painéis · `#E4E4E7` (zinc-200) bordas/divisórias · `#09090B` (zinc-950) rodapé escuro e texto neutro de títulos de páginas internas.
 
 ### Cores dos chips (exclusivas de título)
 | Cor | Hex |
@@ -38,6 +38,26 @@ A própria página `/marca` define: *"uma marca bem humorada e divertida que foc
 | Vermelho | `#E7000B` |
 | Amarelo | `#FDC700` |
 
+**Cores novas para chips.** Os quatro chips acima são a referência canônica, mas dá para criar outros. Regras:
+1. Cor viva e chamativa, perto da família da marca (roxo, lavanda, lima, vermelho, amarelo). Nada de tons apagados.
+2. Texto do chip sempre `#3A1B52`, `#FFFFFF` ou um azul/roxo da paleta, com contraste de pelo menos 4,5:1 (3:1 só em exibição ≥48px).
+3. Valide cada par com cálculo antes de usar.
+4. Nunca dois chips vizinhos da mesma cor.
+5. No máximo uma cor nova por título; as outras vêm do conjunto canônico.
+6. Fora de título, chips seguem proibidos.
+
+Pares já validados:
+| Fundo | Texto | Contraste |
+|---|---|---|
+| `#FF8A1F` laranja | `#3A1B52` | 6,1:1 |
+| `#FF7AD9` rosa | `#3A1B52` | 6,2:1 |
+| `#FFAAF1` rosa claro | `#3330AF` | 5,6:1 |
+| `#5CE1FF` ciano | `#3A1B52` | 9,4:1 |
+| `#2DD4BF` turquesa | `#3A1B52` | 7,7:1 |
+| `#3DDC84` verde vivo | `#3A1B52` | 8,1:1 |
+| `#FF6B6B` coral | `#3A1B52` | 5,2:1 |
+| `#C21E9B` magenta | `#FFFFFF` | 5,3:1 |
+
 ### Semânticas
 Perigo: `#CC2937` (base), `#F75A68` (claro), `#2D090C` (escuro/borda). Azul de selo/"Fabricante autorizado": `#155DFC`. Verde só para WhatsApp: `#00C950`.
 
@@ -45,6 +65,32 @@ Perigo: `#CC2937` (base), `#F75A68` (claro), `#2D090C` (escuro/borda). Azul de s
 - Amarelo: `#FEFCE8` / `#A65F00` / `#432004`
 - Verde: `#F0FDF4` / `#008236` / `#032E15`
 - Roxo: `#FAF5FF` / `#8200DB` / `#3C0366`
+
+### Cinzas de texto (três níveis, tingidos de roxo)
+Cinza neutro (zinc) fica sujo ao lado do roxo. Os três níveis abaixo vêm do mesmo matiz da tinta da marca e dão hierarquia ao texto: o título fica escuro, o parágrafo um degrau abaixo, a nota mais clara.
+| Nível | Token | Hex | Uso |
+|---|---|---|---|
+| Título | `wma-low` | `#3A1B52` | títulos, rótulos, números, links de corpo |
+| Parágrafo | `wma-text` | `#514659` | parágrafos, lead, subtítulos, descrições de cards neutros |
+| Nota | `wma-note` | `#6C5F75` | legendas, créditos, observações, texto secundário, logos de marcas parceiras |
+
+Em fundo escuro (`#3A1B52` ou `#09090B`): parágrafo `#D3C9DD` (9,0:1 sobre `#3A1B52`) e nota `#A69DB0` (5,5:1).
+
+Os dois tons `#514659` e `#6C5F75` também servem para logos de parceiros em versão monocromática (ex.: Toyolex e "Aracaju"). Cinza frio de terceiros, como o `#465659` do Cloudflare, é referência externa e não entra na paleta.
+
+Contraste dos dois tons:
+| Fundo | `#514659` | `#6C5F75` |
+|---|---|---|
+| `#FFFFFF` | 8,9:1 | 5,9:1 |
+| `#FAFAFA` | 8,5:1 | 5,7:1 |
+| `#F4F4F5` | 8,1:1 | 5,4:1 |
+| `#F6ECFF` (lavanda 50%) | 7,7:1 | 5,2:1 |
+| `#EED9FF` | 6,8:1 | 4,5:1 (limite) |
+| `#E7C9FF` | 6,0:1 | 4,0:1 (não usar em texto pequeno) |
+
+```css
+@theme { --color-wma-text: #514659; --color-wma-note: #6C5F75; }
+```
 
 ## 3. Contraste (WCAG 2.x, calculado)
 
@@ -56,11 +102,14 @@ Perigo: `#CC2937` (base), `#F75A68` (claro), `#2D090C` (escuro/borda). Azul de s
 - `#932CE3` sobre branco 5,7:1 e sobre `#F4F4F5` 5,2:1 (links)
 - `#193CB8` sobre `#D8F999` 7,5:1 · `#1447E6` sobre `#D8F999` 5,8:1
 - Cards coloridos (texto 950 sobre fundo 50) ≈ 14:1
+- `#514659` (parágrafo) sobre branco 8,9:1, lavanda 50% 7,7:1, `#EED9FF` 6,8:1, `#E7C9FF` 6,0:1
+- `#6C5F75` (nota) sobre branco 5,9:1, `#F4F4F5` 5,4:1, lavanda 50% 5,2:1
 
 **Restritos (só texto grande: ≥24px bold, ou ≥18,66px bold)**
 - `#155DFC` sobre `#D8F999`: 4,5:1. No limite; use só em título de exibição ≥48px. Abaixo disso, `#193CB8`.
 - `#FDC700` sobre `#E7000B`: 3,0:1. Só no chip vermelho, palavra curta em exibição. Nunca em texto corrido.
 - `#932CE3` sobre `#EED9FF`: 4,3:1. Não usar em texto pequeno sobre lavanda.
+- `#6C5F75` sobre `#EED9FF` 4,5:1 e sobre `#E7C9FF` 4,0:1. Em lavanda cheia ou pálida, texto pequeno usa `#514659`.
 
 **Proibidos**
 - `#FDC700` sobre branco 1,6:1 · `#932CE3` sobre `#3A1B52` 2,5:1 · branco sobre verde WhatsApp `#00C950` 2,2:1 (permitido apenas como ícone de marca do WhatsApp, nunca com texto).
@@ -71,11 +120,21 @@ Regra prática: em dúvida, **roxo-escuro `#3A1B52` sobre claro, ou lavanda sobr
 ## 4. Tipografia
 
 - **Família única: Nunito Sans** (Google Fonts). Fallback: `system-ui, Arial, sans-serif`. Em e-mail: `Nunito, Arial, Helvetica, sans-serif`. Nunca misturar outra família.
-- Pesos: **500** corpo · **600** botões e rótulos · **700** títulos de seção/cards · **900 (Black)** chips, números de destaque ("28+"), chamadas curtas.
-- Escala (web): h1 interno 24→36px bold · h2 de seção 30–36px bold (line-height normal) · h3 de card 20px bold · corpo 16–18px · lead 24px · subtítulo 18px `#71717B` · botão 14px.
+- Pesos: **400** parágrafos · **500** só quando precisa de mais corpo (rótulos, itens de lista) · **600** botões e rótulos · **700** títulos de seção/cards · **900 (Black)** chips, números de destaque ("28+"), chamadas curtas.
+- Escala (web): h1 interno 24→36px bold · h2 de seção 30–36px bold (line-height normal) · h3 de card 20px bold · corpo 16–18px · lead 20–24px em `#514659` · subtítulo e parágrafo 18px em `#514659` · nota 14px em `#6C5F75` · botão 14px.
 - Chips: **MAIÚSCULAS**, peso 900, `line-height:1`, 30→60px conforme a seção.
 - Antialiased; `selection` = fundo `#E7C9FF` a 75% com texto `#333333`.
-- Ênfase dentro de título: ou **pill** (seção 7), ou `text-decoration: underline wavy #932CE3` ("Uniformes <u>Profissionais</u>"). Uma ênfase por título.
+- Ênfase dentro de título: `text-decoration: underline wavy #932CE3` ("Uniformes <u>Profissionais</u>"), no máximo uma por título. Não use pill nem badge dentro de título: ficou estranho nos testes.
+
+### Hierarquia de texto
+1. Título em `#3A1B52`, 700; parágrafo logo abaixo em `#514659`, 400. A diferença de cor, de peso e de tamanho trabalham juntas, porque os dois tons são próximos (degrau de 1,6:1).
+2. Não deixe tudo em `#3A1B52`: parágrafos nessa cor ficam pesados.
+3. Não use cinza neutro (zinc, `#71717B`) ao lado do roxo.
+4. Parágrafo com `line-height` 1,6 a 1,65 e largura máxima de 520 a 560px.
+5. Nota e legenda em `#6C5F75`, nunca abaixo de 14px.
+6. Link e CTA de corpo ficam em `#3A1B52` (ou `#932CE3`), nunca em cinza.
+7. Em cards coloridos, o parágrafo usa o tom do próprio matiz do card (trio da seção 2), não os cinzas acima.
+8. Em fundo escuro, use os tons claros da tabela de cinzas.
 
 ## 5. Assinatura visual: título em chips rotacionados
 
@@ -137,7 +196,6 @@ Estados: hover `opacity:.75` com 300ms · pressionado `translateY(1px)` · desab
 
 - **Raios:** 6 / 8 / 10 (botões, inputs) / 14 (cards) / 18 / 22px (chips). Pilhas ou balões podem usar `rounded-full` em um dos lados.
 - **Card tátil:** borda 2px (topo/laterais) + 4px embaixo, raio 14px, fundo claro tintado + borda e texto do mesmo matiz (trio da seção 2), ícone Phosphor **duotone 36px** no topo, título 20px bold, texto 18px. Largura 320px.
-- **Pill de destaque inline** (dentro do título): fundo `#E7C9FF`, borda `#3A1B52` 1px (topo/laterais) + 2px (embaixo), raio 10px, padding 4px. Ex.: "…experiência para [você!!!]".
 - **Card empilhado ("folha atrás"):** card branco com borda 2px `#3A1B52`, mais uma cópia vazia deslocada 16px para baixo/direita atrás dele. Usado para prints de redes sociais/depoimentos.
 - **Balão de depoimento:** fundo `#E7C9FF`, borda branca 8px, ponta esquerda totalmente arredondada, sombra grande, rotação -6° (única exceção ao limite de ±3°).
 - **Selo:** fundo branco, topo com raio 6px e base totalmente redonda, sombra média, ícone `SealCheck` bold 64px e texto Black em azul `#155DFC` ("Fabricante autorizado").
@@ -172,9 +230,27 @@ Arquivos oficiais (também em `https://wmapersonalizados.com.br/logo/…`, ou `p
 - **Emoji faz parte da voz:** 📍 em "Onde nos encontrar", 💜 no slogan, 🇧🇷 no copyright. Emojis 3D (foguete, alvo, troféu) em 64px acompanhando listas de 3 benefícios. Use poucos e coerentes (um por título/bloco).
 - **Ilustrações:** vetoriais planas em tons de roxo sobre lavanda. Fotos: produto real (uniformes, bordado, silkscreen) em `webp`, sem filtros.
 
+### Imagens: pessoas primeiro
+A WMA prefere pessoas sempre que possível, para passar conexão com quem está vendo. Ordem de escolha:
+1. Foto real de pessoas (clientes, equipe, alunos) vestindo o produto.
+2. Imagem gerada de pessoas.
+3. Foto do produto, quando o foco é o acabamento (bordado, tecido, costura).
+4. Ilustração vetorial, só quando nenhuma das anteriores servir.
+
+Regras:
+- Quando precisar gerar uma imagem, o agente usa a skill de geração de imagens da WMA (`wma-imagens`). Não gere por conta própria.
+- Imagem gerada não se passa por foto real de cliente, de depoimento ou de entrega.
+- Sem skill de imagens disponível, deixe um espaço reservado com legenda clara e avise.
+
 ## 11. Voz e tom
 
-- Português do Brasil, 2ª pessoa informal ("você", "a gente"); frases curtas e diretas; exclamação com moderação ("você!!!" é permitido como brincadeira em destaque).
+- **Registro:** informal, mas não demais. Serve para conversar com cliente, sem gíria pesada e sem formalidade. Português do Brasil, 2ª pessoa ("você"); exclamação com moderação ("você!!!" é permitido como brincadeira em destaque).
+- **Uma ideia por frase**, em português do dia a dia.
+- **Benefício antes do detalhe.** Primeiro o que o cliente ganha, depois como funciona.
+- **Afirmação direta.** Diga o que a WMA faz. Evite frase de contraste ("não é X, é Y"), que soa como texto de máquina.
+- **Pontuação simples:** vírgula, dois-pontos e ponto. Sem travessão. Hífen só em palavra composta.
+- **Nome:** "WMA Personalizados" na primeira menção ou em contexto formal; depois "WMA", em maiúsculas.
+- Exemplos: "Sua equipe veste a sua marca com conforto o dia todo. A WMA borda o logo em polos duráveis." · "Receba em até 48 horas em Aracaju." · "Envie o logo pelo WhatsApp e a WMA cuida do bordado."
 - Frases-modelo: "Proporcionando a melhor experiência para você!!!" · "Estamos aqui para ajudar!" · "Compre agora" · "Faça um orçamento" · **slogan: "Vestir a sua profissão é o nosso trabalho 💜"**.
 - Benefícios sempre concretos: entrega em 48h em Aracaju, entrega para todo o Brasil, pedido pelo WhatsApp, equipe especialista, "28+ escolas / 150+ uniformes / 3 estados" (confirmar números atuais antes de usar).
 - CTA principal de venda: WhatsApp (escolares) ou orçamento (profissionais).
@@ -202,7 +278,7 @@ Arquivos oficiais (também em `https://wmapersonalizados.com.br/logo/…`, ou `p
 
 1. Só Nunito Sans, nos pesos 500/600/700/900?
 2. Paleta restrita a roxos + neutros; lima/vermelho/amarelo só em chips?
-3. Todos os pares texto/fundo ≥ 4,5:1 (ou ≥ 3:1 se texto grande e restrito)? Rodou o cálculo?
+3. Todos os pares texto/fundo ≥ 4,5:1 (ou ≥ 3:1 se texto grande e restrito)? Rodou o cálculo? Parágrafos em `#514659` e notas em `#6C5F75` (não tudo em `#3A1B52`, não zinc)?
 4. Existe exatamente um botão principal e ele tem borda inferior de 4px?
 5. Logo na variante certa, sem distorção, com respiro?
 6. No máximo um título em chips; rotação ≤ ±3°; cores vizinhas diferentes?
@@ -215,3 +291,5 @@ Arquivos oficiais (também em `https://wmapersonalizados.com.br/logo/…`, ou `p
 - Não use outras fontes, outros roxos ou outro azul além de `#155DFC`/`#193CB8`/`#1447E6` nos chips e selo.
 - Não aplique rotação em parágrafos, botões, logo ou fotos. Só chips, selos e balões de depoimento.
 - Não coloque texto amarelo sobre fundo claro nem texto roxo médio sobre roxo-escuro.
+- Não use pill ou badge dentro de título.
+- Não use cinza neutro (zinc) em texto ao lado do roxo; use os cinzas tingidos da seção 2.
